@@ -8,7 +8,7 @@ export default function Navbar() {
         <div className="space-x-8 text-sm font-medium text-slate-600 hidden md:block">
           <Link href="#portfolio" className="hover:text-blue-600 transition">Réalisations</Link>
           <Link href="#tarifs" className="hover:text-blue-600 transition">Offres</Link>
-          <Link href="mailto:contact@tonemail.com" className="bg-slate-900 text-white px-4 py-2 rounded-full hover:bg-slate-800 transition">
+          <Link href="#contact" className="bg-slate-900 text-white px-4 py-2 rounded-full hover:bg-slate-800 transition">
             Me contacter
           </Link>
         </div>

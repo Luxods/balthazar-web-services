@@ -1,47 +1,45 @@
-export default function Portfolio() {
+// app/portfolio/page.tsx
+import { projects } from '@/app/data/portfolio-examples'; // Vérifie que le dossier 'data' est à la racine du projet
+import Link from 'next/link';
+import Image from 'next/image';
+
+export default function PortfolioPage() {
   return (
-    <div className="py-24 bg-slate-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-12">Mes dernières réalisations</h2>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Projet 1 (Concept) */}
-          <div className="group relative overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-200">
-            <div className="h-64 bg-slate-200 flex items-center justify-center group-hover:bg-slate-300 transition-colors">
-              <span className="text-slate-400 font-medium">
-                Image du projet &quot;Boulangerie Moderne&quot;
-              </span>
-            </div>
-            <div className="p-6">
-              <h3 className="text-lg font-bold mb-1">Boulangerie Artisanale</h3>
-              <p className="text-slate-500 text-sm">
-                Refonte complète de l&apos;identité visuelle et click & collect.
-              </p>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 max-w-6xl mx-auto">
+      {projects.map((project) => (
+        <article key={project.id} className="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 bg-white">
+          
+          {/* Zone Image CORRIGÉE */}
+          <div className="relative h-48 w-full bg-slate-100">
+            <Image 
+              src={project.imagePath} 
+              alt={project.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
           </div>
 
-          {/* Projet 2 (Concept) */}
-          <div className="group relative overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-200">
-            <div className="h-64 bg-slate-200 flex items-center justify-center group-hover:bg-slate-300 transition-colors">
-              <span className="text-slate-400 font-medium">
-                Image du projet &quot;Coiffeur Local&quot;
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-2xl font-bold text-slate-900">{project.title}</h3>
+              <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">
+                {project.category}
               </span>
             </div>
-            <div className="p-6">
-              <h3 className="text-lg font-bold mb-1">Salon de Coiffure</h3>
-              <p className="text-slate-500 text-sm">
-                Site vitrine avec module de prise de RDV.
-              </p>
-            </div>
+            
+            <p className="text-slate-600 mb-6 text-sm leading-relaxed">{project.description}</p>
+            
+            {/* Lien d'action */}
+            <Link 
+                href={project.demoLink} 
+                className="inline-flex items-center text-blue-600 font-bold hover:text-blue-800 transition-colors"
+            >
+              Voir la démo live <span className="ml-2">&rarr;</span>
+            </Link>
           </div>
-        </div>
-
-        {/* Note honnête */}
-        <p className="text-center text-slate-400 text-sm mt-8 italic">
-          * Certains projets ci-dessus sont des concepts démontrant mes
-          capacités techniques.
-        </p>
-      </div>
+        </article>
+      ))}
     </div>
   );
 }
