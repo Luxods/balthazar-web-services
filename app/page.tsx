@@ -1,4 +1,4 @@
-import Contact from "@/app/components/Contact"; 
+import Contact from "@/app/components/Contact";
 import Hero from "@/app/components/Hero";
 import Navbar from "@/app/components/Navbar";
 import Portfolio from "@/app/components/Portfolio";

@@ -7,16 +7,40 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  // Simulation d'envoi de formulaire
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simule un délai réseau de 1.5 secondes
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSent(true);
+    // On récupère les valeurs du formulaire
+    const formData = {
+      name: (document.getElementById('name') as HTMLInputElement).value,
+      email: (document.getElementById('email') as HTMLInputElement).value,
+      message: (document.getElementById('message') as HTMLTextAreaElement).value,
+    };
+
+    try {
+      // Appel à NOTRE Api Route créée à l'étape 3
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSent(true);
+        // Optionnel : Reset du formulaire
+        // (e.target as HTMLFormElement).reset(); 
+      } else {
+        alert("Une erreur est survenue lors de l'envoi.");
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      alert("Impossible d'envoyer le message.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -54,7 +78,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-slate-900">Téléphone</h3>
-                  <p className="text-slate-500">06 00 00 00 00</p>
+                  <p className="text-slate-500">06 58 05 27 88</p>
                 </div>
               </div>
 

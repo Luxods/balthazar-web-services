@@ -1,33 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --foreground-rgb: 15, 23, 42; /* Slate 900 */
-  --background-start-rgb: 248, 250, 252; /* Slate 50 */
-  --background-end-rgb: 255, 255, 255;
+/* Le reste de ton CSS perso en dessous */
+html {
+  scroll-behavior: smooth;
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased; /* Rend le texte plus net sur Mac */
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  body {
-    @apply text-slate-600 bg-slate-50 selection:bg-blue-100 selection:text-blue-700;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply text-slate-900 tracking-tight font-bold;
-  }
-}
-
-/* Animations personnalisées */
 @keyframes fade-in-up {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
